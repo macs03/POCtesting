@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+
 import Scroll from './Scroll';
 import SearchList from './SearchList';
 
@@ -6,16 +8,19 @@ function Search({ details }) {
   const [searchField, setSearchField] = useState('');
   const [searchShow, setSearchShow] = useState(false);
 
-  const filteredPersons = details.filter((person) => (
-    person.name.toLowerCase().includes(searchField.toLowerCase())
-      || person.email.toLowerCase().includes(searchField.toLowerCase())
-  ));
+  const filteredPersons = details.filter(({ name, email }) => {
+    const nameInclude = name.toLowerCase().includes(searchField.toLowerCase());
+    const emailInclude = email
+      .toLowerCase()
+      .includes(searchField.toLowerCase());
+
+    return nameInclude || emailInclude;
+  });
 
   const handleChange = (e) => {
     setSearchField(e.target.value);
     setSearchShow(true);
     if (searchField === '') {
-      console.log(searchField);
       setSearchShow(false);
     }
   };
@@ -47,5 +52,9 @@ function Search({ details }) {
     </section>
   );
 }
+
+Search.propTypes = {
+  details: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Search;

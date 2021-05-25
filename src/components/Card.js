@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Card({ person }) {
   return (
@@ -15,5 +16,13 @@ function Card({ person }) {
     </div>
   );
 }
+
+Card.propTypes = {
+  person: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    imgPath: PropTypes.string
+  }).isRequired
+};
 
 export default Card;

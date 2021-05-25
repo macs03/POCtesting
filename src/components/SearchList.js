@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
 
 function SearchList({ filteredPersons }) {
@@ -7,5 +8,9 @@ function SearchList({ filteredPersons }) {
   ));
   return <div>{filtered}</div>;
 }
+
+SearchList.propTypes = {
+  filteredPersons: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default SearchList;
