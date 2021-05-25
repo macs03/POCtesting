@@ -1,12 +1,23 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import Scroll from './Scroll';
 import SearchList from './SearchList';
 
-function Search({ details, articles }) {
+function Search({ details, url }) {
   const [searchField, setSearchField] = useState('');
   const [searchShow, setSearchShow] = useState(false);
+  const [articles, setArticles] = useState([]);
+
+  const getData = useCallback(async () => {
+    const response = await fetch(url);
+    const articlesGetted = await response.json();
+    setArticles(articlesGetted);
+  }, [setArticles, url]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const filteredPersons = details.filter(({ name, email }) => {
     const nameInclude = name.toLowerCase().includes(searchField.toLowerCase());
@@ -61,14 +72,14 @@ function Search({ details, articles }) {
         />
       </div>
       {searchList()}
-      {articlesList(articles)}
+      {articlesList()}
     </section>
   );
 }
 
 Search.propTypes = {
   details: PropTypes.arrayOf(PropTypes.object).isRequired,
-  articles: PropTypes.arrayOf(PropTypes.object).isRequired
+  url: PropTypes.string.isRequired
 };
 
 export default Search;
