@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import Scroll from "./Scroll";
-import SearchList from "./SearchList";
+import React, { useState } from 'react';
+import Scroll from './Scroll';
+import SearchList from './SearchList';
 
 function Search({ details }) {
-  const [searchField, setSearchField] = useState("");
+  const [searchField, setSearchField] = useState('');
   const [searchShow, setSearchShow] = useState(false);
 
-  const filteredPersons = details.filter(person => {
-    return (
-      person.name.toLowerCase().includes(searchField.toLowerCase()) ||
-      person.email.toLowerCase().includes(searchField.toLowerCase())
-    );
-  });
+  const filteredPersons = details.filter((person) => (
+    person.name.toLowerCase().includes(searchField.toLowerCase())
+      || person.email.toLowerCase().includes(searchField.toLowerCase())
+  ));
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setSearchField(e.target.value);
     setSearchShow(true);
-    if (searchField === "") {
+    if (searchField === '') {
       console.log(searchField);
       setSearchShow(false);
     }
