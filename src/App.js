@@ -1,22 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import Search from './components/Search';
 import initialDetails from './data/initialDetails';
 
+const url = 'https://jsonplaceholder.typicode.com/posts';
+
 function App() {
+  const [articles, setArticles] = useState([]);
+
   const getData = async () => {
     const result = await fetch('https://jsonplaceholder.typicode.com/posts');
-    const articles = await result.json();
+    const response = await result.json();
 
-    console.log(articles);
+    setArticles(response);
   };
 
   useEffect(() => {
-    getData();
+    getData(url);
   }, []);
 
   return (
     <div className="tc bg-green ma0 pa4 min-vh-100">
-      <Search details={initialDetails} />
+      <Search details={initialDetails} articles={articles} />
     </div>
   );
 }

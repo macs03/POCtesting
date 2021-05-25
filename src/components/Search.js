@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Scroll from './Scroll';
 import SearchList from './SearchList';
 
-function Search({ details }) {
+function Search({ details, articles }) {
   const [searchField, setSearchField] = useState('');
   const [searchShow, setSearchShow] = useState(false);
 
@@ -35,6 +35,18 @@ function Search({ details }) {
     );
   }
 
+  function articlesList() {
+    return (
+      <Scroll>
+        {articles.map((article) => (
+          <h2 className="grow" key={article.id}>
+            {article.title}
+          </h2>
+        ))}
+      </Scroll>
+    );
+  }
+
   return (
     <section className="garamond">
       <div className="navy georgia ma0 grow">
@@ -49,12 +61,14 @@ function Search({ details }) {
         />
       </div>
       {searchList()}
+      {articlesList(articles)}
     </section>
   );
 }
 
 Search.propTypes = {
-  details: PropTypes.arrayOf(PropTypes.object).isRequired
+  details: PropTypes.arrayOf(PropTypes.object).isRequired,
+  articles: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default Search;

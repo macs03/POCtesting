@@ -8,11 +8,13 @@
     "extends": [
         "eslint:recommended",
         "airbnb",
+        "plugin:react-hooks/recommended",
         "airbnb/hooks",
         "plugin:react/recommended",
         "plugin:import/errors",
         "plugin:import/warnings",
-        "plugin:jsx-a11y/recommended"
+        "plugin:jsx-a11y/recommended",
+        "react-app"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -46,6 +48,8 @@
             }
         ],
         "react/display-name": 1,
-        "comma-dangle": ["error", "never"]
+        "comma-dangle": ["error", "never"],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     }
 }

@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Card({ person }) {
+const Card = ({ person }) => {
+  const sayHi = () => {
+    console.log('Hi there', person.name);
+  };
+
+  useEffect(() => {
+    sayHi();
+  }, []);
+
   return (
     <div className="tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5">
       <img
@@ -15,7 +23,7 @@ function Card({ person }) {
       </div>
     </div>
   );
-}
+};
 
 Card.propTypes = {
   person: PropTypes.shape({
