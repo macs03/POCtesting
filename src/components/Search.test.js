@@ -45,7 +45,7 @@ describe('Testing Search component', () => {
     expect(screen.getByTestId('article-123')).toHaveTextContent('first title');
   });
 
-  fit('should show searched article if something is typed on input', async () => {
+  it('should show searched article if something is typed on input', async () => {
     render(<Search details={initialDetails} url={url} />);
 
     fireEvent.change(screen.getByTestId('search-input'), {
