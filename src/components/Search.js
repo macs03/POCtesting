@@ -31,12 +31,9 @@ function Search({ details, url }) {
   const handleChange = (e) => {
     setSearchField(e.target.value);
     setSearchShow(true);
-    if (searchField === '') {
-      setSearchShow(false);
-    }
   };
 
-  function searchList() {
+  function ShowSearchList() {
     return (
       searchShow && (
         <Scroll>
@@ -46,11 +43,15 @@ function Search({ details, url }) {
     );
   }
 
-  function articlesList() {
+  function ArticlesList() {
     return (
       <Scroll>
         {articles.map((article) => (
-          <h2 className="grow" key={article.id}>
+          <h2
+            className="grow"
+            key={article.id}
+            data-testid={`article-${article.id}`}
+          >
             {article.title}
           </h2>
         ))}
@@ -61,18 +62,21 @@ function Search({ details, url }) {
   return (
     <section className="garamond">
       <div className="navy georgia ma0 grow">
-        <h2 className="f2">Search your course</h2>
+        <h2 className="f2" data-testid="search-title">
+          Search your course
+        </h2>
       </div>
       <div className="pa2">
         <input
           className="pa3 bb br3 grow b--none bg-lightest-blue ma3"
+          data-testid="search-input"
           type="search"
           placeholder="Search People"
           onChange={handleChange}
         />
       </div>
-      {searchList()}
-      {articlesList()}
+      <ShowSearchList />
+      {articles.length > 0 && <ArticlesList />}
     </section>
   );
 }

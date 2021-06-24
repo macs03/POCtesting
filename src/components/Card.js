@@ -9,8 +9,8 @@ const Card = ({ person }) => (
       src={process.env.PUBLIC_URL + person.imgPath}
     />
     <div>
-      <h2>{person.name}</h2>
-      <p>{person.email}</p>
+      <h2 data-testid="card-name">{person.name}</h2>
+      <p data-testid="card-email">{person.email}</p>
     </div>
   </div>
 );
