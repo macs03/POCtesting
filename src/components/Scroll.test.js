@@ -8,7 +8,7 @@ describe('Testing Scroll component', () => {
   it('should render some html element', () => {
     const { container } = render(
       <Scroll>
-        <h1>HelloHello, World!</h1>
+        <h1>Hello, World!</h1>
       </Scroll>
     );
 
@@ -17,7 +17,7 @@ describe('Testing Scroll component', () => {
         style="overflow-y: scroll; height: 70vh;"
       >
         <h1>
-          HelloHello, World!
+          Hello, World!
         </h1>
       </div>
     `);
